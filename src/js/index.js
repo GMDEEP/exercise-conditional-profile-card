@@ -6,7 +6,7 @@ import "../style/index.scss";
  * 
     {
         includeCover: true, // if includeCover is true the algorithm should
-        background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da", // this is the url of the image that will used as background for the profile cover
+        background: "https://images.idgesg.net/images/article/2018/10/ai_artificial-intelligence_circuit-board_circuitry_mother-board_nodes_computer-chips-100777423-large.jpg", // this is the url of the image that will used as background for the profile cover
         avatarURL: "https://randomuser.me/api/portraits/women/42.jpg", // this is the url for the profile avatar
         socialMediaPosition: "left", // social media bar position (left or right)
         
@@ -30,17 +30,36 @@ function render(variables = {}) {
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   // reset the website body with the new html output
-  document.querySelector("#widget_content").innerHTML = `<div class="widget">
+  document.querySelector("#widget_content").innerHTML = `
+        <div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>Lucy Boilett</h1>
-          <h2>Web Developer</h2>
-          <h3>Miami, USA</h3>
-          <ul class="position-right">
-            <li><a href="https://twitter.com/alesanchezr"><i class="fa fa-twitter"></i></a></li>
-            <li><a href="https://github.com/alesanchezr"><i class="fa fa-github"></i></a></li>
-            <li><a href="https://linkedin.com/alesanchezr"><i class="fa fa-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/alesanchezr"><i class="fa fa-instagram"></i></a></li>
+          <h1>${variables.name || "First Name"} ${variables.lastname ||
+    "Last Name"}</h1>
+          <h2>${variables.role || "Profession"}</h2>
+          <h3>${variables.city || "City"}, ${variables.country ||
+    "Country"}</h3>
+          <ul class=${variables.socialMediaPosition}>
+            <li><a href="${
+              variables.twitter == null
+                ? "https://twitter.com/"
+                : "https://twitter.com/" + variables.twitter
+            }"><i class="fa fa-twitter"></i></a></li>
+            <li><a href="${
+              variables.github == null
+                ? "https://github.com/"
+                : "https://github.com/" + variables.github
+            }"><i class="fa fa-github"></i></a></li>
+            <li><a href="${
+              variables.linkedin == null
+                ? "https://linkedin.com/"
+                : "https://linkedin.com/" + variables.linkedin
+            }"><i class="fa fa-linkedin"></i></a></li>
+            <li><a href="${
+              variables.instagram == null
+                ? "https://instagram.com/"
+                : "https://instagram.com/" + variables.instagram
+            }"><i class="fa fa-instagram"></i></a></li>
           </ul>
         </div>
     `;
@@ -54,14 +73,15 @@ window.onload = function() {
     // if includeCover is true the algorithm should
     includeCover: true,
     // this is the url of the image that will used as background for the profile cover
-    background: "https://images.unsplash.com/photo-1511974035430-5de47d3b95da",
+    background:
+      "https://images.idgesg.net/images/article/2018/10/ai_artificial-intelligence_circuit-board_circuitry_mother-board_nodes_computer-chips-100777423-large.jpg",
     // this is the url for the profile avatar
     avatarURL: "https://randomuser.me/api/portraits/women/42.jpg",
     // social media bar position (left or right)
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: "alesanchezr",
+    github: null,
     linkedin: null,
     instagram: null,
     name: null,
